@@ -1,0 +1,10 @@
+venv/
+__pycache__/
+*.pyc
+*.pyo
+backend/data/election.db
+backend/voting_codes.txt
+node_modules/
+frontend/dist/
+.env
+*.log
