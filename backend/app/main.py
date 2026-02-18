@@ -17,8 +17,8 @@ ALLOWED_ORIGINS = os.getenv(
 # In production, you can set ALLOWED_ORIGINS="https://yourdomain.com"
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"] if os.getenv("ENV") == "production" else ALLOWED_ORIGINS,
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
