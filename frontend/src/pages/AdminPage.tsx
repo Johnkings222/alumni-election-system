@@ -121,6 +121,28 @@ function AdminPage() {
     }
   }
 
+  const handleReset = async () => {
+    const confirmed = window.confirm(
+      'WARNING: This will permanently delete ALL candidates, votes, and voting codes.\n\nThis cannot be undone. Are you sure?'
+    )
+    if (!confirmed) return
+    const doubleConfirm = window.confirm('Are you absolutely sure? All election data will be wiped.')
+    if (!doubleConfirm) return
+
+    setError('')
+    setSuccess('')
+    try {
+      await adminAPI.resetElection()
+      setSuccess('Election reset successfully. All data has been wiped.')
+      setCandidates([])
+      setVoters([])
+      setResults([])
+      setGeneratedCodes([])
+    } catch (err) {
+      setError('Failed to reset election')
+    }
+  }
+
   const loadResults = async () => {
     try {
       const data = await votesAPI.getResults()
@@ -217,15 +239,32 @@ function AdminPage() {
     <div className="container">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
         <h1>Admin Dashboard</h1>
-        <button
-          onClick={() => {
-            setIsLoggedIn(false)
-            sessionStorage.removeItem('adminAuth')
-          }}
-          className="btn btn-secondary"
-        >
-          Logout
-        </button>
+        <div style={{ display: 'flex', gap: '0.75rem' }}>
+          <button
+            onClick={handleReset}
+            style={{
+              padding: '0.5rem 1.25rem',
+              border: '1px solid #ef4444',
+              borderRadius: '6px',
+              background: 'none',
+              color: '#ef4444',
+              cursor: 'pointer',
+              fontWeight: '600',
+              fontSize: '0.9rem',
+            }}
+          >
+            Reset Election
+          </button>
+          <button
+            onClick={() => {
+              setIsLoggedIn(false)
+              sessionStorage.removeItem('adminAuth')
+            }}
+            className="btn btn-secondary"
+          >
+            Logout
+          </button>
+        </div>
       </div>
 
       <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', borderBottom: '2px solid var(--border)' }}>

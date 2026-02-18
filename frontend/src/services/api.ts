@@ -63,6 +63,10 @@ export const adminAPI = {
     const response = await api.post('/admin/voters/generate', { count })
     return response.data
   },
+  resetElection: async () => {
+    const response = await api.delete('/admin/reset')
+    return response.data
+  },
   exportResults: async (format: 'csv' | 'pdf') => {
     const response = await api.get(`/admin/export/${format}`, {
       responseType: 'blob',

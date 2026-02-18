@@ -76,6 +76,14 @@ async def remove_candidate(candidate_id: str, db: Session = Depends(get_db)):
     db.commit()
     return {"success": True, "message": f"Candidate removed"}
 
+@router.delete("/reset")
+async def reset_election(db: Session = Depends(get_db)):
+    db.query(Vote).delete()
+    db.query(Voter).delete()
+    db.query(Candidate).delete()
+    db.commit()
+    return {"success": True, "message": "Election reset successfully"}
+
 @router.get("/export/csv")
 async def export_results_csv(db: Session = Depends(get_db)):
     output = io.StringIO()
