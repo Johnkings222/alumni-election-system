@@ -32,7 +32,7 @@ function LoginPage() {
     <div className="container" style={{ maxWidth: '500px', marginTop: '5rem' }}>
       <div className="card">
         <h1 style={{ marginBottom: '1rem', textAlign: 'center' }}>
-          Alumni Election 2003
+          Alumni Election 2001
         </h1>
         <p style={{ color: 'var(--text-secondary)', textAlign: 'center', marginBottom: '2rem' }}>
           Enter your unique voting code to cast your ballot

@@ -23,7 +23,7 @@ function ConfirmationPage() {
           marginBottom: '2rem',
           fontSize: '1.1rem'
         }}>
-          Thank you for participating in the Alumni Election 2003.
+          Thank you for participating in the Alumni Election 2001.
           Your vote has been recorded and cannot be changed.
         </p>
 
